@@ -11,6 +11,7 @@ class TransportSender:
     def __init__(self, local_ip="0.0.0.0", local_port=config.SENDER_PORT,
                  remote_ip=config.RECEIVER_IP, remote_port=config.RECEIVER_PORT, logger=None):
         self.logger = logger # Add logger parameter
+        self.logger.initialize_sender_log()
         self.remote_addr = (remote_ip, remote_port)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

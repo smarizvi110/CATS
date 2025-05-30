@@ -10,10 +10,8 @@ class CSVLogger:
         self.receiver_log_file = f"{filename_prefix}_receiver_{self.timestamp}.csv"
         self._lock = threading.Lock() # For thread-safe writing
 
-        self._initialize_sender_log()
-        self._initialize_receiver_log()
 
-    def _initialize_sender_log(self):
+    def initialize_sender_log(self):
         with self._lock:
             with open(self.sender_log_file, 'w', newline='') as f:
                 writer = csv.writer(f)
@@ -23,7 +21,7 @@ class CSVLogger:
                     "RetryAttempt", "Info"
                 ])
 
-    def _initialize_receiver_log(self):
+    def initialize_receiver_log(self):
         with self._lock:
             with open(self.receiver_log_file, 'w', newline='') as f:
                 writer = csv.writer(f)

@@ -9,6 +9,7 @@ class TransportReceiver:
     def __init__(self, local_ip="0.0.0.0", local_port=config.RECEIVER_PORT,
                  remote_ip=config.RECEIVER_IP, remote_port_ack=config.SENDER_PORT, logger=None): # remote_ip isn't strictly needed if just listening
         self.logger = logger # Add logger parameter
+        self.logger.initialize_receiver_log() # Initialize receiver log
         self.listen_addr = (local_ip, local_port)
         self.ack_dest_addr = (remote_ip, remote_port_ack) # To send ACKs back to sender's listening port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
