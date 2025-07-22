@@ -8,7 +8,7 @@ This repository contains a Python-based proof-of-concept (PoC) demonstrating the
 2. A transport layer with priority-aware send queues.
 3. Prioritized segment transmission when available bandwidth is constrained.
 
-This PoC was developed as an initial step in the research outlined in the accompanying [research proposal document](Investigating_Transport_Level_Semantic_Content_Prioritization_via_TCP_Modification.pdf) (see "Research Proposal" section below).
+This PoC was developed as an initial step in the research outlined in the accompanying [research proposal document](Proposal.pdf) (see "Research Proposal" section below).
 
 ## Core Idea
 
@@ -119,9 +119,7 @@ This Python PoC serves as a foundational step to understand and demonstrate the 
 
 ## Research Proposal
 
-The detailed research proposal outlining the motivation, technical design, challenges, and methodology for "PriorityBBR" can be found here:
-
-* [**Investigating_Transport_Level_Semantic_Content_Prioritization_via_TCP_Modification.pdf**](Investigating_Transport_Level_Semantic_Content_Prioritization_via_TCP_Modification.pdf)
+The detailed research proposal outlining the motivation, technical design, challenges, and methodology for "PriorityBBR" can be found [here](Proposal.pdf).
 
 ## Author
 
