@@ -56,8 +56,8 @@ This PoC simulates the sender-side transport logic responsible for making these 
 1. Clone this repository:
 
     ```zsh
-    git clone https://github.com/smarizvi110/PriorityBBR.git
-    cd PriorityBBR
+    git clone https://github.com/smarizvi110/CATS.git
+    cd CATS
     ```
 
 2. Ensure all Python files (`.py`) are in the same directory.
@@ -127,4 +127,5 @@ Syed Muhammad Aqdas Rizvi
 
 * Email: <25100166@lums.edu.pk>
 * GitHub: [https://github.com/smarizvi110](https://github.com/smarizvi110)
+
 
