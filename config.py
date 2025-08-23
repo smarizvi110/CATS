@@ -22,4 +22,5 @@ SENDER_LOOP_INTERVAL = 0.05
 ACK_TIMEOUT = 0.5 # Seconds
 MAX_RETRIES = 2
 
-LOG_PREFIX = "priority_bbr_sim"
+
+LOG_PREFIX = "CATS_sim"
