@@ -1,8 +1,8 @@
-# Python Proof-of-Concept for TCP-Level Semantic Content Prioritization
+# Python Proof-of-Concept for CATS (Conductor-driven Asymmetric Transport Scheme)
 
-This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, tentatively named "PriorityBBR." This PoC simulates a simplified transport layer that prioritizes data segments based on application-defined importance, especially under simulated network bottleneck conditions.
+This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, named "CATS (Conductor-driven Asymmetric Transport Scheme)." This PoC simulates a simplified transport layer that prioritizes data segments based on application-defined importance, especially under simulated network bottleneck conditions.
 
-**This is NOT a full TCP or BBR implementation.** It is a simplified model built using UDP sockets to illustrate the fundamental principles of:
+**This is NOT a full implementation.** It is a simplified model built using UDP sockets to illustrate the fundamental principles of:
 
 1. Application-assigned data priorities.
 2. A transport layer with priority-aware send queues.
@@ -14,7 +14,7 @@ This PoC was developed as an initial step in the research outlined in the accomp
 
 The internet has become indispensable, and user expectations for website loading speed are ever-increasing. While various optimization techniques exist, they often fall short under constrained bandwidth or when immediate access to core content is important.
 
-This project explores introducing content prioritization at the Transmission Control Protocol (TCP) level. The proposal involves:
+This project explores introducing content prioritization at the Layer 4 (the Transport Layer, as in the OSI model). The proposal involves:
 
 1. Assigning priorities to individual elements within a web page (or data chunks in other applications).
 2. Modifying a TCP-like transport protocol (envisioned as an extension to TCP BBR) to facilitate differentiated delivery based on these priorities.
@@ -127,3 +127,4 @@ Syed Muhammad Aqdas Rizvi
 
 * Email: <25100166@lums.edu.pk>
 * GitHub: [https://github.com/smarizvi110](https://github.com/smarizvi110)
+
