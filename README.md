@@ -71,7 +71,7 @@ This PoC simulates the sender-side transport logic responsible for making these 
     * Start the `app_receiver.py`.
     * Wait for the receiver to signal it's ready (by creating a `.receiver_ready` file).
     * Start the `app_sender.py`.
-    * The simulation will run, printing console output and generating CSV log files (e.g., `priority_bbr_sim_sender_app_sender_YYYYMMDD_HHMMSS.csv` and `priority_bbr_sim_receiver_app_receiver_YYYYMMDD_HHMMSS.csv`) in the current directory.
+    * The simulation will run, printing console output and generating CSV log files (e.g., `CATS_sim_sender_app_sender_YYYYMMDD_HHMMSS.csv` and `CATS_sim_receiver_app_receiver_YYYYMMDD_HHMMSS.csv`) in the current directory.
     * The launcher will terminate automatically after the sender application finishes. You can also stop it earlier with `Ctrl+C`.
 
 ## Configuration
@@ -139,3 +139,4 @@ At this time, reuse of any kind, including citation; redistribution; modificatio
 Permissions may be updated in the future at the discretion of the author (e.g., after related research is published).  
 
 Collaboration and scholarly discussion are welcome! If this project aligns with your interests, please don’t hesitate to reach out!
+
