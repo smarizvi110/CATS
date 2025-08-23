@@ -18,13 +18,13 @@ def handle_received_data(payload: bytes, priority: int, seq_num: int):
     print(f"[{timestamp}] [App Receiver] <<<< PRIO:{prio_str} (Seq:{seq_num}) -- Data: {decoded_payload}")
 
 def main():
-    # log_prefix = "priority_bbr_sim_receiver_app" # Example
+    # log_prefix = "CATS_sim_receiver_app" # Example
     # main_logger = CSVLogger(filename_prefix=log_prefix)
     # Your logger initialization based on your corrected code
     # Ensure this doesn't conflict if launcher script tries to manage filenames too
 
     # For logger to be instantiated here as per your fixed structure:
-    main_logger = CSVLogger(filename_prefix="priority_bbr_sim_receiver_app")
+    main_logger = CSVLogger(filename_prefix="CATS_sim_receiver_app")
 
     receiver_transport = TransportReceiver(
         logger=main_logger, 
@@ -68,4 +68,5 @@ def main():
         print("Application Receiver finished.")
 
 if __name__ == "__main__":
+
     main()
