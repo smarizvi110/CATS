@@ -110,7 +110,7 @@ The `app_sender.py` script can also be modified to change the data generation pa
 
 The primary next step for this research, as outlined in the proposal, is to move towards a more rigorous simulation environment:
 
-1. **Implementation in ns-3:** Implement the PriorityBBR concept by modifying the TCP BBR module within the ns-3 network simulator.
+1. **Implementation in ns-3:** Implement CATS by modifying the TCP BBR module within the ns-3 network simulator.
 2. **Simulation on Standard Topologies:** Conduct experiments on dumbbell and parking lot topologies.
 3. **Rigorous Fairness Analysis:** Evaluate inter-flow and intra-flow fairness against legacy TCP implementations.
 4. **Performance Evaluation:** Compare against baseline BBR and potentially QUIC/HTTP/3 prioritization under various network conditions.
@@ -119,7 +119,7 @@ This Python PoC serves as a foundational step to understand and demonstrate the 
 
 ## Research Proposal
 
-The detailed research proposal outlining the motivation, technical design, challenges, and methodology for "PriorityBBR" can be found [here](Proposal.pdf).
+The detailed research proposal outlining the motivation, technical design, challenges, and methodology for CATS can be found [here](Proposal.pdf).
 
 ## Author
 
@@ -128,4 +128,14 @@ Syed Muhammad Aqdas Rizvi
 * Email: <25100166@lums.edu.pk>
 * GitHub: [https://github.com/smarizvi110](https://github.com/smarizvi110)
 
+## License & Usage
 
+All rights reserved © 2025 Syed Muhammad Aqdas Rizvi. See [LICENSE.md](LICENSE.md).
+
+This repository is part of a research project and is shared publicly for reference.
+
+At this time, reuse of any kind, including citation; redistribution; modification; or derivative/inspired works, is not permitted without prior written permission.  
+
+Permissions may be updated in the future at the discretion of the author (e.g., after related research is published).  
+
+Collaboration and scholarly discussion are welcome! If this project aligns with your interests, please don’t hesitate to reach out!
