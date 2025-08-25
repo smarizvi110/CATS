@@ -2,8 +2,8 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/CATS_Logo_White.png" />
-  
   <source media="(prefers-color-scheme: light)" srcset="assets/CATS_Logo_Black.png" />
+  <img alt="CATS Logo">
 </picture>
 
 This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, named "CATS (Conductor-driven Asymmetric Transport Scheme)." This PoC simulates a simplified transport layer that prioritizes data segments based on    application-defined importance, especially under simulated network bottleneck conditions.
@@ -152,4 +152,5 @@ At this time, reuse of any kind, including citation; redistribution; modificatio
 Permissions may be updated in the future at the discretion of the author (e.g., after related research is published).  
 
 Collaboration and scholarly discussion are welcome! If this project aligns with your interests, please don’t hesitate to reach out!
+
 
