@@ -1,6 +1,12 @@
 # Python Proof-of-Concept for CATS (Conductor-driven Asymmetric Transport Scheme)
 
-This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, named "CATS (Conductor-driven Asymmetric Transport Scheme)." This PoC simulates a simplified transport layer that prioritizes data segments based on application-defined importance, especially under simulated network bottleneck conditions.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/CATS_Logo_White.png" />
+  
+  <source media="(prefers-color-scheme: light)" srcset="assets/CATS_Logo_Black.png" />
+</picture>
+
+This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, named "CATS (Conductor-driven Asymmetric Transport Scheme)." This PoC simulates a simplified transport layer that prioritizes data segments based on    application-defined importance, especially under simulated network bottleneck conditions.
 
 **This is NOT a full implementation.** It is a simplified model built using UDP sockets to illustrate the fundamental principles of:
 
@@ -37,6 +43,8 @@ This PoC simulates the sender-side transport logic responsible for making these 
 
 ## File Structure
 
+Within `src/`, the key files are:
+
 * `run_simulation.py`: Main launcher script to start both the receiver and sender applications and manage the simulation.
 * `app_sender.py`: Example application that generates data with different priorities and sends it via the transport layer.
 * `app_receiver.py`: Example application that receives data and logs its arrival.
@@ -60,7 +68,12 @@ This PoC simulates the sender-side transport logic responsible for making these 
     cd CATS
     ```
 
-2. Ensure all Python files (`.py`) are in the same directory.
+2. Navigate to the `src/` directory:
+
+    ```zsh
+    cd src
+    ```
+
 3. Execute the main launcher script from your terminal:
 
     ```zsh
