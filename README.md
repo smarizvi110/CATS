@@ -1,156 +1,75 @@
-# Python Proof-of-Concept for CATS (Conductor-driven Asymmetric Transport Scheme)
 
-<picture>
+<p align="center">
+  <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/CATS_Logo_White.png" />
   <source media="(prefers-color-scheme: light)" srcset="assets/CATS_Logo_Black.png" />
   <img alt="CATS Logo">
 </picture>
+</p>
 
-This repository contains a Python-based proof-of-concept (PoC) demonstrating the core scheduling mechanics of a proposed transport-level semantic content prioritization scheme, named "CATS (Conductor-driven Asymmetric Transport Scheme)." This PoC simulates a simplified transport layer that prioritizes data segments based on    application-defined importance, especially under simulated network bottleneck conditions.
+<h1 align="center">CATS: Conductor-driven Asymmetric Transport Scheme</h1>
 
-**This is NOT a full implementation.** It is a simplified model built using UDP sockets to illustrate the fundamental principles of:
+<p align="center">
+  <b><a href="https://ieeexplore.ieee.org/document/11413235">📄 IEEE Xplore Article</a></b> | 
+  <b><a href="https://arxiv.org/abs/XXXX.XXXXX">🔓 arXiv Preprint (Coming Soon)</a></b> | 
+  <b><a href="https://github.com/smarizvi110/ns-3-dev-git">💻 View the ns-3 C++ Implementation</a></b>
+</p>
 
-1. Application-assigned data priorities.
-2. A transport layer with priority-aware send queues.
-3. Prioritized segment transmission when available bandwidth is constrained.
+This repository serves as the central hub for the **CATS** research project, introduced in our ICIC 2025 paper: *"A Case for CATS: A Conductor-driven Asymmetric Transport Scheme for Semantic Prioritization."*
 
-This PoC was developed as an initial step in the research outlined in the accompanying [research proposal document](Proposal.pdf) (see "Research Proposal" section below).
+Standard transport protocols like TCP operate as a blind, FIFO conveyor belt for data, a model that is increasingly suboptimal for latency-sensitive and interactive applications. This paper challenges this model by introducing CATS (Conductor-driven Asymmetric Transport Scheme), a framework that provides TCP with the semantic awareness necessary to prioritize critical content. By centralizing scheduling intelligence in a transport-native "Conductor", CATS significantly improves user-perceived performance by delivering essential data first. This architecture directly confronts a cascade of historical performance workarounds and their limitations, including the high overhead of parallel connections in HTTP/1.1, the transport-layer Head-of-Line blocking in HTTP/2, and the observed implementation heterogeneity of prioritization in HTTP/3 over QUIC. Built upon TCP BBR, our ns-3 implementation demonstrates this principle by reducing the First Contentful Paint by over 78% in a representative webpage download configured as a deliberate worst-case scenario, with no penalty to total page load time compared to the baseline.
 
-## Core Idea
+---
 
-The internet has become indispensable, and user expectations for website loading speed are ever-increasing. While various optimization techniques exist, they often fall short under constrained bandwidth or when immediate access to core content is important.
+## 📂 Project Structure and Source Code
 
-This project explores introducing content prioritization at the Layer 4 (the Transport Layer, as in the OSI model). The proposal involves:
+This project is divided into this main hub repository and a separate ns-3 simulator fork.
 
-1. Assigning priorities to individual elements within a web page (or data chunks in other applications).
-2. Modifying a TCP-like transport protocol (envisioned as an extension to TCP BBR) to facilitate differentiated delivery based on these priorities.
-3. Ensuring that the most critical parts of a data stream are delivered first, followed by less essential resources as bandwidth permits, especially under network constraints.
+### 1. The Official C++ Implementation (ns-3)
+The core protocol modifications and the reproducible experiments used to generate the results in the paper were built directly into the ns-3 network simulator. 
 
-This PoC simulates the sender-side transport logic responsible for making these prioritized sending decisions.
+👉 **[Click here to view the ns-3 fork and experiment scripts](https://github.com/smarizvi110/ns-3-dev-git)**
 
-## Features Illustrated by this PoC
+*Note: To reproduce the exact results from the paper, please download the **[v1.0-icic2025 Release](https://github.com/smarizvi110/ns-3-dev-git/releases/tag/v1.0-icic2025)** from the repository linked above.*
 
-* **Application-Defined Priorities:** The sender application can assign HIGH or LOW priority to data chunks.
-* **Segmentation:** Application data is broken into smaller, fixed-size segments.
-* **Priority Queues:** The simulated sender transport layer maintains separate queues for high and low-priority segments.
-* **Simulated Bottleneck Bandwidth:** The sender paces its transmissions to mimic a configurable network bottleneck.
-* **Simplified Congestion Window (CWND):** A basic mechanism limits the amount of unacknowledged ("in-flight") data.
-* **Prioritized Sending Logic:** The sender always attempts to send segments from the high-priority queue before the low-priority queue, provided sending is allowed by the pacing and CWND.
-* **Basic ACK Mechanism:** The receiver sends acknowledgments for received data segments.
-* **Simple Retransmission on Timeout:** The sender retransmits segments if an ACK is not received within a timeout period, prioritizing retransmissions.
-* **CSV Logging:** Detailed logs of sender and receiver events are generated for analysis (timestamps, sequence numbers, priorities, event types, etc.).
-* **Simulated Packet Loss:** The receiver can be configured to randomly drop incoming data segments to test retransmission logic.
+### 2. Python Proof-of-Concept (`/python-poc`)
+This hub repository contains a simplified Python-based conceptual model built using UDP sockets. It presents the basic scheduling principles of CATS (application-defined priorities, prioritized queues, and debt-based fairness) without the complexity of a full kernel or ns-3 TCP stack. See the `python-poc/` directory for instructions on how to run it.
 
-## File Structure
+### 3. Research Archive (`/archive`)
+Early brainstorming notes, original proposal documents, and the developmental history of the project are preserved here for reference and transparency.
 
-Within `src/`, the key files are:
+---
 
-* `run_simulation.py`: Main launcher script to start both the receiver and sender applications and manage the simulation.
-* `app_sender.py`: Example application that generates data with different priorities and sends it via the transport layer.
-* `app_receiver.py`: Example application that receives data and logs its arrival.
-* `transport_sender.py`: Implements the sender-side logic of the simplified transport layer (priority queues, pacing, CWND, ACK handling).
-* `transport_receiver.py`: Implements the receiver-side logic (receiving segments, sending ACKs).
-* `segment.py`: Defines the `Segment` class used for data and ACK packets.
-* `config.py`: Contains shared configuration parameters (IPs, ports, segment sizes, priorities, simulation settings).
-* `logger.py`: Implements the `CSVLogger` class for writing simulation events to CSV files.
-* `Investigating_Transport_Level_Semantic_Content_Prioritization_via_TCP_Modification.pdf` (Optional): The research proposal document.
+## 📝 Citation
 
-## Prerequisites
+If you find this research or code useful, please consider citing our paper:
 
-* Python 3.x
+```bibtex
+@INPROCEEDINGS{11413235,
+  author={Rizvi, Syed Muhammad Aqdas},
+  booktitle={2025 6th International Conference on Innovative Computing (ICIC)}, 
+  title={A Case for CATS: A Conductor-driven Asymmetric Transport Scheme for Semantic Prioritization}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Transport protocols;Processor scheduling;Semantics;Computer architecture;Conductors;Belts;Data models;Quality of experience;Standards;Paints;TCP;BBR;Quality of Experience (QoE);Prioritization;Transport Layer Scheduling;Head-of-Line (HoL) Blocking},
+  doi={10.1109/ICIC68258.2025.11413235}}
 
-## How to Run
+```
 
-1. Clone this repository:
+---
 
-    ```zsh
-    git clone https://github.com/smarizvi110/CATS.git
-    cd CATS
-    ```
+## 📜 License
 
-2. Navigate to the `src/` directory:
+* **Code:** The Python Proof-of-Concept code in this repository is licensed under the [MIT License](LICENSE). *(Note: The official C++ ns-3 implementation in the linked fork inherits the GPLv2 license of the ns-3 project).*
+* **Paper:** The official PDF manuscript is published by and copyright © 2025 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses.
 
-    ```zsh
-    cd src
-    ```
+---
 
-3. Execute the main launcher script from your terminal:
+## 👨‍💻 Author
 
-    ```zsh
-    python run_simulation.py
-    ```
-
-    This script will:
-    * Start the `app_receiver.py`.
-    * Wait for the receiver to signal it's ready (by creating a `.receiver_ready` file).
-    * Start the `app_sender.py`.
-    * The simulation will run, printing console output and generating CSV log files (e.g., `CATS_sim_sender_app_sender_YYYYMMDD_HHMMSS.csv` and `CATS_sim_receiver_app_receiver_YYYYMMDD_HHMMSS.csv`) in the current directory.
-    * The launcher will terminate automatically after the sender application finishes. You can also stop it earlier with `Ctrl+C`.
-
-## Configuration
-
-Key simulation parameters can be adjusted in `config.py`:
-
-* `MAX_SEGMENT_PAYLOAD_SIZE`: Size of data in each segment.
-* `HIGH_PRIORITY`, `LOW_PRIORITY`: Integer values for priorities.
-* `INITIAL_CWND`, `MAX_CWND`: Congestion window parameters.
-* `SIMULATED_BANDWIDTH_SPS`: Segments Per Second for the bottleneck.
-* `SENDER_LOOP_INTERVAL`: Granularity of the sender's main loop.
-* `ACK_TIMEOUT`, `MAX_RETRIES`: For retransmission logic.
-
-The `app_sender.py` script can also be modified to change the data generation patterns (amount of high vs. low priority data, timing, etc.).
-
-## Expected Output & Analysis
-
-* **Console Output:** Both sender and receiver applications print status messages to the console, showing data being queued, sent, and received, along with priorities.
-* **CSV Log Files:** These are the primary source for detailed analysis.
-  * **Sender Log (`..._sender_app_sender_...csv`):** Contains events like `APP_QUEUE` (data given by app to transport), `SENT_NEW`, `SENT_RETRANSMIT`, `ACK_RX`, `MARK_RETRANSMIT`, `DROP_MAX_RETRY`. Includes timestamps, sequence numbers, priorities, CWND, in-flight counts.
-  * **Receiver Log (`..._receiver_app_receiver_...csv`):** Contains events like `DATA_RX`, `ACK_TX`, `SIMULATED_DROP`. Includes timestamps, sequence numbers, priorities.
-  * These logs can be imported into spreadsheet software or analyzed with Python (e.g., using Pandas and Matplotlib) to:
-    * Visualize the order of segment transmission and reception.
-    * Compare the end-to-end latency for high vs. low-priority segments.
-    * Observe the effect of the simulated bottleneck and CWND.
-    * Verify that high-priority data "jumps the queue" under contention.
-
-## Limitations of this PoC
-
-* **Not Real TCP/BBR:** This PoC uses UDP sockets and simulates transport layer behaviors. It does not implement the full TCP state machine, detailed BBR algorithms (like bandwidth probing, RTTmin tracking, DRAIN phase, etc.), or robust TCP options.
-* **Simplified Congestion Control:** The CWND mechanism is very basic (additive increase on ACK, multiplicative decrease on loss).
-* **Idealized Network:** Assumes a simple point-to-point link; no complex network topologies, cross-traffic, or router queue effects are modeled beyond the sender-side bottleneck simulation.
-* **Basic Reliability:** ACK and retransmission logic is functional for demonstration but not as robust as production TCP.
-
-## Next Steps (Research Direction)
-
-The primary next step for this research, as outlined in the proposal, is to move towards a more rigorous simulation environment:
-
-1. **Implementation in ns-3:** Implement CATS by modifying the TCP BBR module within the ns-3 network simulator.
-2. **Simulation on Standard Topologies:** Conduct experiments on dumbbell and parking lot topologies.
-3. **Rigorous Fairness Analysis:** Evaluate inter-flow and intra-flow fairness against legacy TCP implementations.
-4. **Performance Evaluation:** Compare against baseline BBR and potentially QUIC/HTTP/3 prioritization under various network conditions.
-
-This Python PoC serves as a foundational step to understand and demonstrate the core scheduling logic before undertaking more complex ns-3 development.
-
-## Research Proposal
-
-The detailed research proposal outlining the motivation, technical design, challenges, and methodology for CATS can be found [here](Proposal.pdf).
-
-## Author
-
-Syed Muhammad Aqdas Rizvi
-
-* Email: <25100166@lums.edu.pk>
-* GitHub: [https://github.com/smarizvi110](https://github.com/smarizvi110)
-
-## License & Usage
-
-All rights reserved © 2025 Syed Muhammad Aqdas Rizvi. See [LICENSE.md](LICENSE.md).
-
-This repository is part of a research project and is shared publicly for reference.
-
-At this time, reuse of any kind, including citation; redistribution; modification; or derivative/inspired works, is not permitted without prior written permission.  
-
-Permissions may be updated in the future at the discretion of the author (e.g., after related research is published).  
-
-Collaboration and scholarly discussion are welcome! If this project aligns with your interests, please don’t hesitate to reach out!
-
-
+**Syed Muhammad Aqdas Rizvi**
+* Independent Researcher / Alumnus, Lahore University of Management Sciences (LUMS)
+* Email: 25100166@lums.edu.pk | s.muhammadaqdasrizvi@gmail.com
+* ORCID: [0009-0004-1491-4839](https://orcid.org/0009-0004-1491-4839)
