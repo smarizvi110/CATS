@@ -11,7 +11,7 @@
 
 <p align="center">
   <b><a href="https://ieeexplore.ieee.org/document/11413235">📄 IEEE Xplore Article</a></b> | 
-  <b><a href="https://arxiv.org/abs/XXXX.XXXXX">🔓 arXiv Preprint (Coming Soon)</a></b> | 
+  <b><a href="https://arxiv.org/abs/2603.13945">🔓 arXiv Version</a></b> | 
   <b><a href="https://github.com/smarizvi110/ns-3-dev-git">💻 View the ns-3 C++ Implementation</a></b>
 </p>
 
